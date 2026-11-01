@@ -1,2 +1,33 @@
-.git
-*.pyc
+# The tier3 image is built from this checkout, so its build context is the repository root and
+# everything left here is copied into the image. Patterns are matched against the path relative
+# to the context root, so a bare name only matches at the top level: nested locations need an
+# explicit `**/` prefix or leftover caches and build artifacts still change the context checksum.
+**/.git
+
+# Caches
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.coverage
+
+# Build artifacts
+**/build/
+**/dist/
+**/*.egg-info/
+**/*.egg
+**/develop-eggs/
+**/eggs/
+**/parts/
+**/objs/
+**/*.so
+**/*.mo
+**/_cptbox.cpp
+
+# Local virtualenvs and editor state; a stray venv would shadow the /env built below
+env*/
+.venv/
+.tox/
+**/.idea/
