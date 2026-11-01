@@ -173,6 +173,10 @@ class IsolateTracer(dict):
                 sys_prlimit64: self.handle_prlimit,
                 sys_getdents64: ALLOW,
                 sys_rseq: ALLOW,
+                # GHC's runtime queries and sets the NUMA policy while starting up, so the HASK
+                # executor fails its self-test unless these are allowed.
+                sys_get_mempolicy: ALLOW,
+                sys_set_mempolicy: ALLOW,
             }
         )
 
